@@ -1,9 +1,9 @@
-require('dotenv').config();
-const pg = require('pg');
+require("dotenv").config();
+const pg = require("pg");
 
 const dbConfig = { connectionString: process.env.DATABASE_URL };
 let db;
-if (process.env.NODE_ENV === 'test') {
+if (process.env.NODE_ENV === "test") {
   db = new pg.Client(dbConfig);
   db.connect();
 } else {
@@ -15,11 +15,11 @@ if (process.env.NODE_ENV === 'test') {
 
 module.exports = {
   query: (sql, params) => {
-    console.log('SENDING QUERY | ', sql, params);
+    console.log("SENDING QUERY | ", sql, params);
     return db.query(sql, params);
   },
   end: () => db.end(),
   POSTGRES_ERROR_CODE: {
-    UNIQUE_CONSTRAINT: '23505',
+    UNIQUE_CONSTRAINT: "23505",
   },
 };
